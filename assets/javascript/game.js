@@ -12,29 +12,31 @@ function chooseRandomWord (wordArray) {
 
 }
    
-
-function blankOutWord(wordToBlank, blankChar){
-	var letterInWord = "";
-    for (var j = 0; j < wordToBlank.length; j++) { // this doesn't work
-	lettersInWord.push("_ ");
-	console.log(wordToBlank);
-}
-}
 //This is to split out the word  like_ _ _ _
+function blankOutWord(wordToBlank){
+	var lettersInWord = [];
+    for (var j = 0; j < wordToBlank.length; j++) { // this doesn't work
+	lettersInWord.push("_");
+	console.log(wordToBlank);
+	}
+	return lettersInWord
+}
 
+//blankOutWord();
 var word = chooseRandomWord(words); 
-var lettersInWord = blankOutWord(word);
-//var lettersInWord =[];
-var guessMatches = [];
+//var lettersInWord = blankOutWord(word);
+var lettersInWord = word.split("");
+var guessMatches = blankOutWord(word);
 var misses = [];
 var lives = [10];
-var x = ("_");
-var y = [];
+var wins = [0];
+//var x = ("_");
+//var y = [];
 
 
 // document.getElementById("current").innerHTML = guessMatches;
 document.getElementById("guessing").innerHTML = word;
-document.getElementById("current").innerHTML = lettersInWord; //why are these showing?
+document.getElementById("current").innerHTML = guessMatches.join(" "); //why are these showing?
 document.getElementById("guessesleft").innerHTML = lives;
 // for (var i = randomWord.length; i = lettersInWord; i++) {
 // 	guessMatches.push[i];
@@ -46,9 +48,11 @@ document.onkeyup = function(event) {
      console.log(key);
      var inWord = false;
 	for (var i = 0; i < lettersInWord.length; i++) {
-		if (key == word[i]) {
+		if (key == lettersInWord[i]) {
 			inWord = true;
-			guessMatches[i] = word[i];
+			guessMatches[i] = lettersInWord[i];
+
+
 //			word.push(guessMatches);//how do I add to array each time? Just leaving 1 letter
 
 
@@ -56,15 +60,25 @@ document.onkeyup = function(event) {
 
 	
 	}
-	if (inWord) {
+
+	if (!inWord) {
 		misses.push(key);
-		document.getElementById("guessedletters").innerHTML = (key);
+		document.getElementById("guessedletters").innerHTML = misses.join(", ");
 //		lives--; //added this line to update lives left
 //		document.getElementById("guessesLeft").innerHTML = (lives);
 	}
+	document.getElementById("current").innerHTML = guessMatches.join(" "); 
 }
+//to update game stats
+if (misses === 0){
+	wins++
+}
+if (lettersInWord !== "any__"){
+	wins++
+}
+if (misses === 0){
 
-
+}
 //now put this in a string.	
 
 
@@ -88,7 +102,3 @@ document.onkeyup = function(event) {
 //update number of attempts left
 //check if there are any__ left to guess in the word
 //add counter for number of wins
-
-//generate _ _ on the screen for the length of word
-
-
