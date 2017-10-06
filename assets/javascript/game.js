@@ -7,7 +7,7 @@ var words = ["bat", "ball", "swing", "pitcher", "homerun", "single", "double", "
 // This function will pick our word
 function chooseRandomWord (wordArray) {
     var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
-    console.log(randomWord);
+    //console.log(randomWord);
     return randomWord;
 
 }
@@ -29,13 +29,16 @@ var lettersInWord = word.split("");
 var guessMatches = blankOutWord(word);
 var misses = [];
 var lives = [10];
-var wins = [0];
-
+var wins = [];
+var wordArray =[];
+var blankOutWord = [];
+//var randomWord = [];
 
 // document.getElementById("current").innerHTML = guessMatches;
 document.getElementById("guessing").innerHTML = word;
 document.getElementById("current").innerHTML = guessMatches.join(" "); 
 document.getElementById("guessesleft").innerHTML = lives;
+document.getElementById("wins").innerHTML = wins;
 // for (var i = randomWord.length; i = lettersInWord; i++) {
 // 	guessMatches.push[i];
 // }
@@ -79,16 +82,20 @@ document.onkeyup = function(event) {
 		resetGame();
 
 	} 
+	if (lettersInWord.length === guessMatches.length) {
+		wins ++;
+		
+	}
 }
 function resetGame(){
-		chooseRandomWord();
+		chooseRandomWord(wordArray);
 		lives = 10;
-		misses = [];
-		blankOutWord();
+		misses =[];
+		blankOutWord(wordToBlank);
 		document.getElementById("guessing").innerHTML = word;
 		document.getElementById("guessesleft").innerHTML = lives;
 		document.getElementById("current").innerHTML = guessMatches.join(" "); 
-}
+};
 //to update game stats
 
 
