@@ -32,6 +32,7 @@ var lives = [10];
 var wins = [];
 var wordArray =[];
 var blankOutWord = [];
+var wordToBlank =[];
 //var randomWord = [];
 
 // document.getElementById("current").innerHTML = guessMatches;
@@ -62,7 +63,7 @@ document.onkeyup = function(event) {
 	
 	}
 
-	if (!inWord){
+	if (inWord === false){
 		misses.push(key);
 		document.getElementById("guessedletters").innerHTML = misses.join(", ").toUpperCase();
 		lives--; 
@@ -82,22 +83,26 @@ document.onkeyup = function(event) {
 		resetGame();
 
 	} 
-	if (lettersInWord.length === guessMatches.length) {
+	if (word === lettersInWord){//lettersInWord.length === guessMatches.length) {
 		wins ++;
-		
+		document.getElementById("wins").innerHTML = wins;
+		resetGame();
+
 	}
 }
 function resetGame(){
 		chooseRandomWord(wordArray);
+		//blankOutWord();
 		lives = 10;
 		misses =[];
-		blankOutWord(wordToBlank);
+		//guessMatches =[];
+		//blankOutWord(wordToBlank);
 		document.getElementById("guessing").innerHTML = word;
 		document.getElementById("guessesleft").innerHTML = lives;
 		document.getElementById("current").innerHTML = guessMatches.join(" "); 
 };
 //to update game stats
-
+resetGame();
 
 
 
