@@ -15,34 +15,31 @@ function chooseRandomWord (wordArray) {
 //This is to split out the word  like_ _ _ _
 function blankOutWord(wordToBlank){
 	var lettersInWord = [];
-    for (var j = 0; j < wordToBlank.length; j++) { // this doesn't work
+    for (var j = 0; j < wordToBlank.length; j++) { 
 	lettersInWord.push("_");
 	console.log(wordToBlank);
 	}
 	return lettersInWord;
 }
 
-//blankOutWord();
+
 var word = chooseRandomWord(words); 
-//var lettersInWord = blankOutWord(word);
 var lettersInWord = word.split("");
 var guessMatches = blankOutWord(word);
 var misses = [];
 var lives = [10];
-var wins = [];
+var wins = 0;
 var wordArray =[];
 var blankOutWord = [];
 var wordToBlank =[];
-//var randomWord = [];
 
-// document.getElementById("current").innerHTML = guessMatches;
-document.getElementById("guessing").innerHTML = word;
+
+//turn on line 38 (and line 23 in the index to see what word you are guessing)
+//document.getElementById("guessing").innerHTML = word;
 document.getElementById("current").innerHTML = guessMatches.join(" "); 
 document.getElementById("guessesleft").innerHTML = lives;
 document.getElementById("wins").innerHTML = wins;
-// for (var i = randomWord.length; i = lettersInWord; i++) {
-// 	guessMatches.push[i];
-// }
+
 
 //this is to see if the key pressed matches letters inthe random word
 document.onkeyup = function(event) {
@@ -55,7 +52,7 @@ document.onkeyup = function(event) {
 			guessMatches[i] = lettersInWord[i];
 
 
-//			word.push(guessMatches);//how do I add to array each time? Just leaving 1 letter
+//			word.push(guessMatches);
 
 
 		}
@@ -83,45 +80,47 @@ document.onkeyup = function(event) {
 		resetGame();
 
 	} 
-	if (word === lettersInWord){//lettersInWord.length === guessMatches.length) {
-		wins ++;
-		document.getElementById("wins").innerHTML = wins;
-		resetGame();
+	//I can't figure out the 2 that I need to compare for a win. I've tried all of the below options, with no luck. Consider this psuedo code I guess. The one I left has you winning every time! Ugh
+	//lettersInWord.length===randomWord.length
+	//lettersInWord.length === word.length
+	//word.length === guessMatches.length
+	//lettersInWord.length === guessMatches.length
+	//word === lettersInWord
+	//word.length===randomWord.length
+	//guessMatches.join(" ").length===lettersInWord.length
 
-	}
+
+//	if (word.length === guessMatches.length){
+//		wins ++;
+//		document.getElementById("wins").innerHTML = wins;
+//		resetGame();
+
+//	}
 }
 function resetGame(){
+	// I'm unable to get this function to populate a new random word. It should be in this function so I could call the function when a win/loss happens. 
 		chooseRandomWord(wordArray);
 		//blankOutWord();
 		lives = 10;
 		misses =[];
 		//guessMatches =[];
 		//blankOutWord(wordToBlank);
-		document.getElementById("guessing").innerHTML = word;
+		//document.getElementById("guessing").innerHTML = word;
 		document.getElementById("guessesleft").innerHTML = lives;
 		document.getElementById("current").innerHTML = guessMatches.join(" "); 
+
 };
 //to update game stats
 resetGame();
 
 
 
-// if (misses === 0){
-// 	wins++
-// }
-// if (lettersInWord !== "any__"){
-// 	wins++
-// }
-// if (misses === 0){
 
-// }
 
 
 
 //check if users keypress is an actual letter
 
 //check if key pressed has already been used
-
-//update number of attempts left
 
 //add counter for number of wins
